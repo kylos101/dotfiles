@@ -75,7 +75,7 @@ function tail-prebuild() {
   kubectl exec -it "$1" -- tail -f /workspace/.gitpod/prebuild-log-0
 }
 
-function ssh-node() {
-  # TODO: move me back to cloud when the port # changes back to 22
+function ssh-workspace-node() {
+  gcloud config set project workspace-clusters
   gcloud compute ssh "$1" --ssh-flag="-p 2222"
 }

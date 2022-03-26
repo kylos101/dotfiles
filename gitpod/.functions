@@ -79,3 +79,7 @@ function ssh-workspace-node() {
   gcloud config set project workspace-clusters
   gcloud compute ssh "$1" --ssh-flag="-p 2222"
 }
+
+function watch-prebuilds() {
+  watch "kubectl get pods -o wide --sort-by=.spec.nodeName | grep prebuild"
+}

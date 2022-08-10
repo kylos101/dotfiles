@@ -102,3 +102,8 @@ function get-workspace-details() {
 
   kubectl get pods "$1" -o jsonpath='{.metadata.labels.metaID}{"\t"}{.status.phase}{"\t"}{.metadata.name}{"\t\t"}{.spec.nodeName}{"\t"}{.spec.containers[].env[?(@.name=="GITPOD_GIT_USER_EMAIL")].value}{"\t"}{.spec.containers[].env[?(@.name=="GITPOD_IDE_ALIAS")].value}{"\t"}{.spec.containers[].env[?(@.name=="GITPOD_WORKSPACE_CONTEXT_URL")].value}{"\n"}'
 }
+
+function connection-count() {
+  echo "netstat -anpt 2>&1 | tail -n +5 | awk '{print $7,$6}' | sort -k1,1 -k3,3 \
+    | sed 's#/# #' | column -t | uniq -c"
+}

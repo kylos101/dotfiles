@@ -107,3 +107,19 @@ function connection-count() {
   echo "netstat -anpt 2>&1 | tail -n +5 | awk '{print $7,$6}' | sort -k1,1 -k3,3 \
     | sed 's#/# #' | column -t | uniq -c"
 }
+
+function remove-neverready-workspaces() {
+  kubectl get pod -o json -l component=workspace -l headless=false | jq -r '.items[] | select(.metadata.deletionTimestamp != null and .metadata.annotations["gitpod/never-ready"] != null ) | .metadata.name' | xargs -P 20 -I {} bash -c "kubectl patch pod {} -p '{\"metadata\":{\"finalizers\":null}}' --type=merge"
+}
+
+function show-neverready-workspaces() {
+  kubectl get pod -o json -l component=workspace -l headless=false | jq -r '.items[] | select(.metadata.deletionTimestamp != null and .metadata.annotations["gitpod/never-ready"] != null ) | .metadata.name' | xargs -P 20 -I {} bash -c "kubectl get pod {} -o wide"
+}
+
+function remove-neverready-prebuilds() {
+  kubectl get pod -o json -l component=workspace -l headless=true | jq -r '.items[] | select(.metadata.deletionTimestamp != null and .metadata.annotations["gitpod/never-ready"] != null ) | .metadata.name' | xargs -P 20 -I {} bash -c "kubectl patch pod {} -p '{\"metadata\":{\"finalizers\":null}}' --type=merge"
+}
+
+function show-neverready-prebuilds() {
+  kubectl get pod -o json -l component=workspace -l headless=true | jq -r '.items[] | select(.metadata.deletionTimestamp != null and .metadata.annotations["gitpod/never-ready"] != null ) | .metadata.name' | xargs -P 20 -I {} bash -c "kubectl get pod {} -o wide"
+}

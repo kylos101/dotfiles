@@ -109,17 +109,17 @@ function connection-count() {
 }
 
 function remove-neverready-workspaces() {
-  kubectl get pod -o json -l component=workspace -l headless=false | jq -r '.items[] | select(.metadata.deletionTimestamp != null and .metadata.annotations["gitpod/never-ready"] != null ) | .metadata.name' | xargs -P 20 -I {} bash -c "kubectl patch pod {} -p '{\"metadata\":{\"finalizers\":null}}' --type=merge"
+  kubectl get pod -o json -l component=workspace -l headless=false | jq -r '.items[] | select(.metadata.deletionTimestamp != null and .metadata.annotations["gitpod/never-ready"] != null  and .metadata.finalizers == null ) | .metadata.name' | column | xargs -r kubectl delete pods --grace-period=0 --force
 }
 
 function show-neverready-workspaces() {
-  kubectl get pod -o json -l component=workspace -l headless=false | jq -r '.items[] | select(.metadata.deletionTimestamp != null and .metadata.annotations["gitpod/never-ready"] != null ) | .metadata.name' | column | xargs kubectl get pods -o wide
+  kubectl get pod -o json -l component=workspace -l headless=false | jq -r '.items[] | select(.metadata.deletionTimestamp != null and .metadata.annotations["gitpod/never-ready"] != null and .metadata.finalizers == null ) | .metadata.name' | column | xargs kubectl get pods -o wide
 }
 
 function remove-neverready-prebuilds() {
-  kubectl get pod -o json -l component=workspace -l headless=true | jq -r '.items[] | select(.metadata.deletionTimestamp != null and .metadata.annotations["gitpod/never-ready"] != null ) | .metadata.name' | xargs -P 20 -I {} bash -c "kubectl patch pod {} -p '{\"metadata\":{\"finalizers\":null}}' --type=merge"
+  kubectl get pod -o json -l component=workspace -l headless=true | jq -r '.items[] | select(.metadata.deletionTimestamp != null and .metadata.annotations["gitpod/never-ready"] != null and .metadata.finalizers == null ) | .metadata.name' | column | xargs -r kubectl delete pods --grace-period=0 --force
 }
 
 function show-neverready-prebuilds() {
-  kubectl get pod -o json -l component=workspace -l headless=true | jq -r '.items[] | select(.metadata.deletionTimestamp != null and .metadata.annotations["gitpod/never-ready"] != null ) | .metadata.name' | column | xargs kubectl get pods -o wide
+  kubectl get pod -o json -l component=workspace -l headless=true | jq -r '.items[] | select(.metadata.deletionTimestamp != null and .metadata.annotations["gitpod/never-ready"] != null and .metadata.finalizers == null ) | .metadata.name' | column | xargs kubectl get pods -o wide
 }

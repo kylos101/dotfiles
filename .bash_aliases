@@ -19,4 +19,4 @@ source ~/system/.functions
 source ~/nerdctl/.functions
 source ~/docker/.functions
 
-source ~/go/.alias
+source ~/golang/.alias

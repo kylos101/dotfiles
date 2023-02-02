@@ -1,0 +1,1 @@
+alias go-smoke="go build . && go test -v ./..."

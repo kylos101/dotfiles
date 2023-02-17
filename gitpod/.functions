@@ -123,3 +123,17 @@ function remove-neverready-prebuilds() {
 function show-neverready-prebuilds() {
   kubectl get pod -o json -l component=workspace -l headless=true | jq -r '.items[] | select(.metadata.deletionTimestamp != null and .metadata.annotations["gitpod/never-ready"] != null and .metadata.finalizers == null ) | .metadata.name' | column | xargs -r kubectl get pods -o wide
 }
+
+function preview-minio() {
+  curl https://dl.min.io/client/mc/release/linux-amd64/mc \
+  --create-dirs \
+  -o $HOME/minio-binaries/mc
+
+  chmod +x $HOME/minio-binaries/mc
+  export PATH=$PATH:$HOME/minio-binaries/
+
+  kubectl port-forward svc/minio 9000 &
+
+  mc alias set preview-minio http://localhost:9000 "$(kubectl get secrets minio -o jsonpath="{.data.root-user}" | base64 -d)" "$(kubectl get secrets minio -o jsonpath="{.data.root-password}" | base64 -d)"
+  mc ls preview-minio
+}

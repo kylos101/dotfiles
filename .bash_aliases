@@ -3,6 +3,7 @@ source ~/gcloud/.functions
 
 source ~/git/.alias
 source ~/git/.functions
+source ~/git/.run
 
 source ~/gitpod/.alias
 source ~/gitpod/.functions

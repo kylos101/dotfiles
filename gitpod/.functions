@@ -137,3 +137,14 @@ function preview-minio() {
   mc alias set preview-minio http://localhost:9000 "$(kubectl get secrets minio -o jsonpath="{.data.root-user}" | base64 -d)" "$(kubectl get secrets minio -o jsonpath="{.data.root-password}" | base64 -d)"
   mc ls preview-minio
 }
+
+function get-dedicated-nodes() {
+  kubectl get nodes -o=custom-columns="NAME:.metadata.name,\
+NODEGROUP:.metadata.labels.eks\.amazonaws\.com/nodegroup,\
+RUNTIME:.status.nodeInfo.containerRuntimeVersion,\
+MAXPODS:.status.capacity.pods,\
+KERNEL:.status.nodeInfo.kernelVersion,\
+AMIFAMILY:.status.nodeInfo.osImage,\
+K8S:.status.nodeInfo.kubeletVersion,\
+Instance-ID:.spec.providerID"
+}

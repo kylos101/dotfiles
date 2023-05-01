@@ -148,3 +148,8 @@ AMIFAMILY:.status.nodeInfo.osImage,\
 K8S:.status.nodeInfo.kubeletVersion,\
 Instance-ID:.spec.providerID"
 }
+
+function preview-me() {
+  git checkout -b "kylos101/$(openssl rand -base64 8 | tr -dc 'a-zA-Z0-9')"
+  yes Y | TF_VAR_infra_provider="gce" TF_VAR_with_large_vm=true leeway run dev:preview
+}

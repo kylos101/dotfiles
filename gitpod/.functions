@@ -94,6 +94,10 @@ function workspace-count() {
   kubectl get pods -o wide -l component=workspace --sort-by=.spec.nodeName -o custom-columns=:.spec.nodeName  | grep "\S" | uniq -c | sort -nr -k1,1
 }
 
+function headless-workspace-count() {
+  kubectl get pods -o wide -l gitpod.io/headless="true" --sort-by=.spec.nodeName -o custom-columns=:.spec.nodeName  | grep "\S" | uniq -c | sort -nr -k1,1
+}
+
 function get-workspace-details() {
   if [ -z "$1" ]; then
     kubectl get pods --sort-by=.spec.nodeName  --selector=component=workspace -o jsonpath='{range .items[*]}{.metadata.labels.metaID}{"\t"}{.status.phase}{"\t"}{.metadata.name}{"\t\t"}{.spec.nodeName}{"\t"}{.spec.containers[].env[?(@.name=="GITPOD_GIT_USER_EMAIL")].value}{"\t"}{.spec.containers[].env[?(@.name=="GITPOD_IDE_ALIAS")].value}{"\t"}{.spec.containers[].env[?(@.name=="GITPOD_WORKSPACE_CONTEXT_URL")].value}{"\t"}{.spec.containers[].env[?(@.name=="GITPOD_OWNER_ID")].value}{"\n"}{end}' | sort -t $'\t' -k6

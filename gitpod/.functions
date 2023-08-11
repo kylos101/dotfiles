@@ -91,11 +91,11 @@ function top-workspaces() {
 }
 
 function workspace-count() {
-  kubectl get pods -o wide -l component=workspace --sort-by=.spec.nodeName -o custom-columns=:.spec.nodeName  | grep "\S" | uniq -c | sort -nr -k1,1
+  watch "kubectl get pods -o wide -l component=workspace --sort-by=.spec.nodeName | awk 'NR > 1 {print \$7}' | sort | uniq -c"
 }
 
 function headless-workspace-count() {
-  kubectl get pods -o wide -l gitpod.io/headless="true" --sort-by=.spec.nodeName -o custom-columns=:.spec.nodeName  | grep "\S" | uniq -c | sort -nr -k1,1
+  watch "kubectl get pods -o wide -l gitpod.io/headless=true --sort-by=.spec.nodeName | awk 'NR > 1 {print \$7}' | sort | uniq -c"
 }
 
 function get-workspace-details() {

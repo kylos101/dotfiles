@@ -1,3 +1,20 @@
 function gbuild() {
     CGO_ENABLED=0 go build "$@"
 }
+
+function dejson-log() {
+    if [ ! "$(which jq)" ]; then
+        echo "jq is not present"
+        exit 1
+    fi
+
+    jq -Rr '. as $line |
+    try (
+        fromjson |
+        .time + " " + .component + " " + .severity
+            + if .message == null then "" else .message | " \"" + tostring + "\"" end
+            + if .context == null then "" else .context | " context:" + tostring end
+            + if .payload == null then "" else .payload | " payload:" + tostring end
+            + if .error == null then "" else .error | "\n" + tostring end
+    ) catch $line'
+}

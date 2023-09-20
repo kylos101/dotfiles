@@ -144,7 +144,8 @@ function preview-minio() {
 
 function get-dedicated-nodes() {
   kubectl get nodes -o=custom-columns="NAME:.metadata.name,\
-NODEGROUP:.metadata.labels.eks\.amazonaws\.com/nodegroup,\
+NODEGROUP:.metadata.labels.alpha\.eksctl\.io/nodegroup-name,\
+MONITORING:.metadata.labels.gitpod\.io/workload_monitoring,\
 RUNTIME:.status.nodeInfo.containerRuntimeVersion,\
 MAXPODS:.status.capacity.pods,\
 KERNEL:.status.nodeInfo.kernelVersion,\

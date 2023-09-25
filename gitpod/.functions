@@ -158,3 +158,10 @@ function preview-me() {
   git checkout -b "kylos101/$(openssl rand -base64 8 | tr -dc 'a-zA-Z0-9')"
   GITPOD_WSMANAGER_MK2=true leeway run dev:preview
 }
+
+function get_wid() {
+  if [ -z "$1" ]; then
+    echo "need an instance id"
+  fi
+  echo -n "$1" | md5sum | awk '{print toupper($1)}' | sed 's/\(........\)\(....\)\(....\)\(....\)\(............\)/\1-\2-\3-\4-\5/'
+}

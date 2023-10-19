@@ -1,0 +1,1 @@
+alias aws-get-active-stacks="aws cloudformation list-stacks | jq '.StackSummaries[] | select(.StackStatus != "DELETE_COMPLETE")'"

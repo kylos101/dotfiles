@@ -21,3 +21,6 @@ source ~/nerdctl/.functions
 source ~/docker/.functions
 
 source ~/golang/.alias
+
+source ~/aws/.alias
+source ~/aws/.functions

@@ -13,4 +13,4 @@ alias restart-smith="kubectl rollout restart daemonset agent-smith"
 alias restart-rg="kubectl rollout restart daemonset registry-facade"
 alias restart-proxy="kubectl rollout restart deployment ws-proxy"
 
-alias myns="kubens | grep kyleb"
+alias install-k9s="brew install derailed/k9s/k9s"

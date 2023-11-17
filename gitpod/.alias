@@ -14,3 +14,4 @@ alias restart-rg="kubectl rollout restart daemonset registry-facade"
 alias restart-proxy="kubectl rollout restart deployment ws-proxy"
 
 alias install-k9s="brew install derailed/k9s/k9s"
+alias get-dedicated-context="aws eks update-kubeconfig --name "${CLUSTER_NAME}" --role "arn:aws:iam::${CELL_AWS_ID}:role/gitpod-customer-debug-access-role-${CELL_NAME}""

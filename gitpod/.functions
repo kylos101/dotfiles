@@ -165,3 +165,14 @@ function get_wid() {
   fi
   echo -n "$1" | md5sum | awk '{print tolower($1)}' | sed 's/\(........\)\(....\)\(....\)\(....\)\(............\)/\1-\2-\3-\4-\5/'
 }
+
+function write_context_file() {
+  touch TEMP.env
+  echo "export AWS_REGION=" > TEMP.env
+
+  echo "export CELL_AWS_ID=" >> TEMP.env
+  echo "export CELL_NAME=" >> TEMP.env
+  echo "export CLUSTER_NAME=" >> TEMP.env
+
+  echo "" >> TEMP.env
+}

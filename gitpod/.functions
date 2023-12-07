@@ -159,13 +159,6 @@ function preview-me() {
   GITPOD_WSMANAGER_MK2=true leeway run dev:preview
 }
 
-function get_wid() {
-  if [ -z "$1" ]; then
-    echo "need an instance id"
-  fi
-  echo -n "$1" | md5sum | awk '{print tolower($1)}' | sed 's/\(........\)\(....\)\(....\)\(....\)\(............\)/\1-\2-\3-\4-\5/'
-}
-
 function write_context_file() {
   touch TEMP.env
   echo "export AWS_REGION=" > TEMP.env

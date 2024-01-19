@@ -25,3 +25,9 @@ function rebase-from-master() {
     git rebase master
     git stash pop
 }
+
+function fix() {
+    git add .
+    git commit -m "fix"
+    git push
+}

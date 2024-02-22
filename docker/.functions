@@ -5,3 +5,7 @@ function d-run() {
 function d-exec() {
     docker exec -e COLUMNS=200 -it "$1" sh
 }
+
+function d-build-and-run() {
+    docker run --rm -it $(docker build -q .)
+}

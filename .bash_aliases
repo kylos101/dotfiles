@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ test -d ~/dotfiles ]
+if test -d ~/dotfiles
 then
     FOLDER=~/dotfiles
 else

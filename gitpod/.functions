@@ -156,7 +156,7 @@ Instance-ID:.spec.providerID"
 
 function preview-me() {
   git checkout -b "kylos101/$(openssl rand -base64 8 | tr -dc 'a-zA-Z0-9')"
-  GITPOD_WSMANAGER_MK2=true leeway run dev:preview
+  TF_VAR_with_large_vm=true TF_VAR_gce_use_spot=false leeway run dev:preview
 }
 
 function write_context_file() {

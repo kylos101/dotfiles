@@ -1,35 +1,28 @@
 #!/bin/bash
 
-if test -d ~/dotfiles
-then
-    FOLDER=~/dotfiles
-else
-    FOLDER=~/
-fi
+source ~/gcloud/.alias
+source ~/gcloud/.functions
 
-source $FOLDER/gcloud/.alias
-source $FOLDER/gcloud/.functions
+source ~/git/.alias
+source ~/git/.functions
+source ~/git/.run
 
-source $FOLDER/git/.alias
-source $FOLDER/git/.functions
-source $FOLDER/git/.run
+source ~/gitpod/.alias
+source ~/gitpod/.functions
 
-source $FOLDER/gitpod/.alias
-source $FOLDER/gitpod/.functions
+source ~/system/.alias
 
-source $FOLDER/system/.alias
+source ~/kubernetes/.env
+source ~/kubernetes/.alias
+source ~/kubernetes/.functions
 
-source $FOLDER/kubernetes/.env
-source $FOLDER/kubernetes/.alias
-source $FOLDER/kubernetes/.functions
+source ~/dev/.functions
+source ~/system/.functions
 
-source $FOLDER/dev/.functions
-source $FOLDER/system/.functions
+source ~/nerdctl/.functions
+source ~/docker/.functions
 
-source $FOLDER/nerdctl/.functions
-source $FOLDER/docker/.functions
+source ~/golang/.alias
 
-source $FOLDER/golang/.alias
-
-source $FOLDER/aws/.alias
-source $FOLDER/aws/.functions
+source ~/aws/.alias
+source ~/aws/.functions

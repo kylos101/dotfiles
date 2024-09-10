@@ -22,3 +22,8 @@ function dejson-log() {
 function dejwt() {
     jq -R 'split(".") | .[0:2] | map(@base64d | fromjson)'
 }
+
+function install-aider() {
+    python -m pip install aider-chat
+    python -m aider
+}

@@ -24,6 +24,5 @@ function dejwt() {
 }
 
 function install-aider() {
-    python -m pip install aider-chat
-    python -m aider
+    pip3 install aider-chat
 }

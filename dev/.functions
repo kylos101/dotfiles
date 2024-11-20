@@ -23,6 +23,6 @@ function dejwt() {
     jq -R 'split(".") | .[0:2] | map(@base64d | fromjson)'
 }
 
-function install-aider() {
-    pip3 install aider-chat
+function debug-processes() {
+    ps aux --sort=-%mem | awk '{if (NR==1) print $0; else printf "%s %7s %4s %4s %8.1fM %6.1fM %-8s %-4s %-8s %s %s\n", $1, $2, $3, $4, $5/1024, $6/1024, $7, $8, $9, $10, substr($0, index($0,$11))}'
 }

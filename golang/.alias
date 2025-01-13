@@ -1,1 +1,2 @@
 alias go-smoke="go build . && go test -v ./..."
+alias go-format="gofmt -s -w ."

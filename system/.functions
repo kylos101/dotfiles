@@ -7,3 +7,10 @@ function tarx() {
 function mkd() {
     mkdir "$1" && cd "$1"
 }
+
+# Write 4GB here
+function write-random-data() {
+    for i in {1..40}; do
+        dd if=/dev/urandom of="data_$(printf '%02d' $i).dat" bs=1M count=100
+    done
+}

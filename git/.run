@@ -1,1 +1,2 @@
 git config --global --add --bool push.autoSetupRemote true
+source /usr/share/bash-completion/completions/git

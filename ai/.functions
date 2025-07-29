@@ -1,0 +1,18 @@
+function go-iterate() {
+    local prompt="$1"
+    
+    if [ -z "$prompt" ]; then
+        echo "Error: go-iterate requires a prompt string parameter" >&2
+        return 1
+    fi
+    
+    local append_text="
+- create a new branch with kb/ prefix
+- commit changes
+- publish to remote
+- open a draft PR using the default template from the repo
+- keep the PR description minimal, focused on motivation/intent without fluffy language. Also, the PR summary must omit implementation details
+- observe the PR each 5 mins for next hour, make sure that CI gets to green, and review feedback is addressed"
+    
+    echo "${prompt}${append_text}"
+}

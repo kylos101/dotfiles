@@ -35,3 +35,5 @@ source $FOLDER/aws/.alias
 source $FOLDER/aws/.functions
 
 source $FOLDER/claude/.functions
+
+source $FOLDER/ai/.functions

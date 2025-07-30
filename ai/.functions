@@ -10,8 +10,8 @@ function go-iterate() {
 - create a new branch with kb/ prefix
 - commit changes
 - publish to remote
-- open a draft PR using the default template from the repo
-- keep the PR description minimal, focused on motivation/intent without fluffy language. Also, the PR summary must omit implementation details
+- open a draft PR using the default template from the repo, the summary should be like: [top-level folder] <brief description of change>
+- keep the PR description minimal, focused on motivation/intent without fluffy language. Also, the PR description must omit implementation details
 - observe the PR each 5 mins for next hour, make sure that CI gets to green, and review feedback is addressed"
     
     echo "${prompt}${append_text}"

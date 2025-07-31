@@ -1,0 +1,39 @@
+tasks:
+  setup-dotfiles:
+    name: Setup Dotfiles
+    description: Create symlink to make dotfiles available in expected location and link .bash_aliases
+    command: |
+      # Create symlink from ~/dotfiles to the workspace dotfiles
+      if [ ! -L ~/dotfiles ]; then
+        ln -sf /workspaces/dotfiles ~/dotfiles
+        echo "Created symlink: ~/dotfiles -> /workspaces/dotfiles"
+      else
+        echo "Dotfiles symlink already exists"
+      fi
+      
+      # Create symlink for .bash_aliases in home directory
+      if [ ! -L ~/.bash_aliases ]; then
+        ln -sf ~/dotfiles/.bash_aliases ~/.bash_aliases
+        echo "Created symlink: ~/.bash_aliases -> ~/dotfiles/.bash_aliases"
+      else
+        echo ".bash_aliases symlink already exists"
+      fi
+      
+      # Verify the setup works
+      if [ -f ~/dotfiles/.bash_aliases ]; then
+        echo "✅ Dotfiles are accessible at ~/dotfiles"
+        echo "✅ .bash_aliases found and linked"
+        
+        # Test sourcing the aliases (this will validate all dependencies)
+        if source ~/dotfiles/.bash_aliases 2>/dev/null; then
+          echo "✅ Successfully loaded dotfiles aliases and functions"
+          echo "✅ Available aliases: $(alias | grep -c alias) total"
+        else
+          echo "⚠️  Some dotfiles may have issues, but symlinks are created"
+        fi
+      else
+        echo "❌ Failed to access dotfiles"
+        exit 1
+      fi
+    triggeredBy:
+      - postDevcontainerStart

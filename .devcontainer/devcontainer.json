@@ -3,18 +3,35 @@
 //
 // See https://aka.ms/devcontainer.json for more information.
 {
-	"name": "Gitpod",
-	// Use "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
-	// instead of the build to use a pre-built image.
+	"name": "Dotfiles Development Environment",
 	"build": {
-        "context": ".",
-        "dockerfile": "Dockerfile"
-    }
-	// Features add additional features to your environment. See https://containers.dev/features
-	// Beware: features are not supported on all platforms and may have unintended side-effects.
-	// "features": {
-    //   "ghcr.io/devcontainers/features/docker-in-docker": {
-    //     "moby": false
-    //   }
-    // }
+		"context": ".",
+		"dockerfile": "Dockerfile"
+	},
+	
+	// Configure tool-specific properties
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"terminal.integrated.defaultProfile.linux": "bash"
+			}
+		}
+	},
+
+	// Features add additional features to your environment
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker": {
+			"moby": false,
+			"dockerDashComposeVersion": "v2"
+		}
+	},
+
+	// Forward commonly used development ports
+	"forwardPorts": [],
+	
+	// Configure port attributes
+	"portsAttributes": {},
+
+	// Use 'postCreateCommand' to run commands after the container is created
+	"postCreateCommand": "echo 'Dev container created successfully'"
 }

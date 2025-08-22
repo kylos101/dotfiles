@@ -5,8 +5,8 @@ function go-iterate() {
 - if this branch is main or master, create a new branch with kb/ prefix
 - commit changes
 - push to remote
-- create a draft PR using the default template from the repo, the PR title should be like: [top-level folder] <brief description of change>
-- keep the PR description/summary minimal, focused on motivation/intent without fluffy language, do not include implementation details.
+- create a draft PR, the PR title should be like: [top-level folder] <brief description of change>
+- using the default template from the repo, keep the PR description/summary high-level, focused on motivation/intent without fluffy language, do not include implementation details.
 - observe the checks for this branch's PR every 5 mins for the next hour, make sure that the checks succeed/pass and that review feedback is handled"
     
     if [ -z "$prompt" ]; then

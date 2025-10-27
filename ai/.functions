@@ -7,6 +7,7 @@ function go-iterate() {
 - push to remote
 - create a draft PR, the PR title MUST be like: [top-level folder] <brief description of change>
 - you MUST follow the PR template in the repo's .github folder, be brief when adding content to the PR description, do not use extra words, do not include implementation details.
+- the PR must mention fixes or contributes to <ref>, you must ask me for this detail if I omit it
 - observe the checks for this branch's PR every 5 mins for the next hour, make sure that the checks succeed/pass and that review feedback is handled"
     
     if [ -z "$prompt" ]; then

@@ -1,0 +1,27 @@
+Repository Summary: kylos101/dotfiles
+
+This repository contains shell configuration files (dotfiles) organized by tool/service.
+The main entry point is .bash_aliases, which sources all other configuration files.
+
+Directory Structure:
+- ai/         - AI-related functions (e.g., go-iterate for automated PR workflows)
+- aws/        - AWS CLI aliases and functions
+- claude/     - Claude AI functions
+- dev/        - Development helper functions
+- docker/     - Docker-related functions
+- gcloud/     - Google Cloud CLI aliases and functions
+- git/        - Git aliases (g=git), functions, and auto-run scripts
+- gitpod/     - Gitpod-specific aliases for workspace management (ws-daemon, ws-manager, etc.)
+- golang/     - Go language aliases
+- kubernetes/ - Kubernetes aliases (k=kubectl, kgp, etc.) and functions
+- nerdctl/    - nerdctl container runtime functions
+- system/     - System utilities (psg, histg)
+
+Dev Container:
+- .devcontainer/ - Dev container configuration for Gitpod environments
+- .gitpod/       - Gitpod automations (setup-dotfiles task)
+- .gitpod.yml    - Legacy Gitpod configuration
+
+Usage:
+Source .bash_aliases in your shell profile to load all configurations.
+The script auto-detects whether dotfiles are in ~/dotfiles or ~/ and sources accordingly.

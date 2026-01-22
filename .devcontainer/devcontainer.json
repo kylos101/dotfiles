@@ -1,37 +1,16 @@
-// The Dev Container format allows you to configure your environment. At the heart of it
-// is a Docker image or Dockerfile which controls the tools available in your environment.
-//
-// See https://aka.ms/devcontainer.json for more information.
 {
-	"name": "Dotfiles Development Environment",
-	"build": {
-		"context": ".",
-		"dockerfile": "Dockerfile"
-	},
-	
-	// Configure tool-specific properties
-	"customizations": {
-		"vscode": {
-			"settings": {
-				"terminal.integrated.defaultProfile.linux": "bash"
-			}
-		}
-	},
-
-	// Features add additional features to your environment
-	"features": {
-		"ghcr.io/devcontainers/features/docker-in-docker": {
-			"moby": false,
-			"dockerDashComposeVersion": "v2"
-		}
-	},
-
-	// Forward commonly used development ports
-	"forwardPorts": [],
-	
-	// Configure port attributes
-	"portsAttributes": {},
-
-	// Use 'postCreateCommand' to run commands after the container is created
-	"postCreateCommand": "echo 'Dev container created successfully'"
+  "name": "devcontainer-test",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.debugpy",
+        "ms-python.black-formatter",
+        "ms-python.pylint",
+        "eamodio.gitlens"
+      ]
+    }
+  }
 }
+ 

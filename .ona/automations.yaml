@@ -1,0 +1,43 @@
+tasks:
+    python_setup:
+        name: 'python_setup: Environment Setup: init'
+        description: init task migrated from .gitpod.yml
+        command: |
+            echo "Setting up Python environment"
+            python -m venv .venv
+            source .venv/bin/activate
+            pipenv install -d
+
+            echo "Configuring VSCode"
+            mkdir -p .vscode
+            cp .gitpod/.vscode/* .vscode
+        triggeredBy:
+            - prebuild
+
+    dot_env_file_setup:
+        name: 'dot_env_file_setup: Environment Setup: command'
+        description: init task migrated from .gitpod.yml
+        command: |
+            echo "Checking if .env file exists"
+            if [ ! -f .env ]; then
+                echo "Checking for TEST_SECRET environment variable"
+                if [ -n "$TEST_SECRET" ]; then
+                    echo "Creating .env file"
+                    cp .env.example .env
+                
+                    echo "Updating .env file with TEST_SECRET environment variable"
+                    sed -i "s/GITLAB_TOKEN=.*/GITLAB_TOKEN=$TEST_SECRET/g" .env
+                else
+                    echo "Warning: TEST_SECRET environment variable is not set"
+                    echo "Please set this variable in your Gitpod user settings using the Gitpod dashboard"
+                    echo "See README.md for details"
+                fi
+            else
+                echo "Found existing .env in workspace"
+            fi
+
+            echo "Updating Python environment"
+            source .venv/bin/activate
+            pipenv install -d
+        triggeredBy:
+            - postDevcontainerStart

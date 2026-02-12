@@ -1,10 +1,10 @@
 FROM mcr.microsoft.com/devcontainers/base:ubuntu-24.04
 
 RUN --mount=type=secret,id=FOO_TOKEN,env=FOO_TOKEN \
-    cat $FOO_TOKEN > /workspaces/foo_envvar.txt
+    cat $FOO_TOKEN
 
 RUN --mount=type=secret,id=/usr/local/secrets/foo,target=/tmp/foo_token.txt \
-    cat /tmp/foo_token.txt > /workspaces/foo_token_file.txt
+    cat /tmp/foo_token.txt
 
 # Install system packages and global dependencies
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \

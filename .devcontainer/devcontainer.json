@@ -17,7 +17,7 @@
 
 	// Features add additional features to your environment
 	"features": {
-		"ghcr.io/devcontainers/features/docker-in-docker": {
+		"353572503587.dkr.ecr.us-east-1.amazonaws.com/test:dind2": {
 			"moby": false,
 			"dockerDashComposeVersion": "v2"
 		}

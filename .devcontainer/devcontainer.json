@@ -4,10 +4,7 @@
 // See https://aka.ms/devcontainer.json for more information.
 {
 	"name": "Dotfiles Development Environment",
-	"build": {
-		"context": ".",
-		"dockerfile": "Dockerfile"
-	},
+	"image": "353572503587.dkr.ecr.us-east-1.amazonaws.com/test:ubuntu",
 	
 	// Configure tool-specific properties
 	"customizations": {

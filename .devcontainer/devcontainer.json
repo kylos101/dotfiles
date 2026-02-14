@@ -4,7 +4,7 @@
 // See https://aka.ms/devcontainer.json for more information.
 {
 	"name": "Dotfiles Development Environment",
-	"image": "353572503587.dkr.ecr.us-east-1.amazonaws.com/test:ubuntu",
+	"image": "ghcr.io/kylos101/test/devcontainer:ubuntu",
 	
 	// Configure tool-specific properties
 	"customizations": {

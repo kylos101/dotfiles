@@ -32,10 +32,13 @@
 	// Configure port attributes
 	"portsAttributes": {},
 
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind", 
+	"workspaceFolder": "/workspace",
+
 	// Use 'postCreateCommand' to run commands after the container is created
 	"postCreateCommand": [
-		"mkdir -p /workspaces/.playtime",
-		"echo $FOO > /workspaces/.playtime/FOO || true",
-		"cat /usr/local/secrets/bar > /workspaces/.playtime/BAR || true"
+		"mkdir -p /workspace/.playtime",
+		"echo $FOO > /workspace/.playtime/FOO || true",
+		"cat /usr/local/secrets/bar > /workspace/.playtime/BAR || true"
 	]
 }

@@ -48,9 +48,5 @@
 	"workspaceFolder": "/workspace/dotfiles",
 
 	// Use 'postCreateCommand' to run commands after the container is created
-	"postStartCommand": [
-		"echo hello"
-		// "echo $FOO > /root/.secrets/FOO || true",
-		// "cat /usr/local/secrets/bar > /root/.secrets/BAR || true"
-	]
+	"postCreateCommand": "bash /workspace/dotfiles/test.sh"
 }

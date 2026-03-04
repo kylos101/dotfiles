@@ -2,7 +2,6 @@
 
 FROM mcr.microsoft.com/devcontainers/base:ubuntu-24.04
 
-RUN mkdir -p /opt/build-secrets
 # Add Go to PATH for all users
 ENV PATH="/usr/local/go/bin:${PATH}"
 ENV GOPATH="/home/vscode/go"

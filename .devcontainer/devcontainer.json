@@ -33,5 +33,9 @@
 	"portsAttributes": {},
 
 	// Use 'postCreateCommand' to run commands after the container is created
-	"postCreateCommand": "echo 'Dev container created successfully'"
+	"postCreateCommand": [
+		"mkdir -p /workspaces/.playtime",
+		"echo $FOO > /workspaces/.playtime/FOO || true",
+		"cat /usr/local/secrets/bar > /workspaces/.playtime/BAR || true"
+	]
 }

@@ -37,8 +37,8 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created
 	"postCreateCommand": [
-		"mkdir -p /workspace/.playtime",
-		"echo $FOO > /workspace/.playtime/FOO || true",
-		"cat /usr/local/secrets/bar > /workspace/.playtime/BAR || true"
+		"mkdir -p /home/vscode/.playtime",
+		"echo $FOO > /home/vscode/.playtime/FOO || true",
+		"cat /usr/local/secrets/bar > /home/vscode/.playtime/BAR || true"
 	]
 }

@@ -26,6 +26,11 @@
 		}
 	},
 
+	 "mounts": [
+        "source=profile,target=/root,type=volume",
+        "target=/root/.secrets,type=volume"
+    ],
+
 	// Forward commonly used development ports
 	"forwardPorts": [],
 	
@@ -37,8 +42,7 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created
 	"postCreateCommand": [
-		"mkdir -p /home/vscode/.playtime",
-		"echo $FOO > /home/vscode/.playtime/FOO || true",
-		"cat /usr/local/secrets/bar > /home/vscode/.playtime/BAR || true"
+		"echo $FOO > /root/.secrets/FOO || true",
+		"cat /usr/local/secrets/bar > /root/.secrets/BAR || true"
 	]
 }

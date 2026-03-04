@@ -31,18 +31,26 @@
         "target=/root/.secrets,type=volume"
     ],
 
+	"containerUser": "root",
+	 "runArgs": [
+        "--privileged",
+        "--security-opt=seccomp=unconfined",
+        "--network=host"
+    ],
+
 	// Forward commonly used development ports
 	"forwardPorts": [],
 	
 	// Configure port attributes
 	"portsAttributes": {},
 
-	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind", 
-	"workspaceFolder": "/workspace",
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace/dotfiles,type=bind", 
+	"workspaceFolder": "/workspace/dotfiles",
 
 	// Use 'postCreateCommand' to run commands after the container is created
-	"postCreateCommand": [
-		"echo $FOO > /root/.secrets/FOO || true",
-		"cat /usr/local/secrets/bar > /root/.secrets/BAR || true"
+	"postStartCommand": [
+		"echo hello"
+		// "echo $FOO > /root/.secrets/FOO || true",
+		// "cat /usr/local/secrets/bar > /root/.secrets/BAR || true"
 	]
 }

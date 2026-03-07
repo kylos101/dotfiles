@@ -12,7 +12,7 @@ source $FOLDER/gcloud/.functions
 
 source $FOLDER/git/.alias
 source $FOLDER/git/.functions
-# source $FOLDER/git/.run
+source $FOLDER/git/.run
 
 source $FOLDER/gitpod/.alias
 source $FOLDER/gitpod/.functions
